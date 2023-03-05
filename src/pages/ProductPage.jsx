@@ -15,13 +15,12 @@ export const ProductPage = () => {
     const status = useSelector((state) => state.product.status);
     const params = useParams();
     const { id, title, price, category, description, image } = product;
-
+    console.log(product);
     const navigate = useNavigate();
     useEffect(() => {
         dispatch(fetchProduct(params.productId));
-    }, [dispatch]);
+    }, [dispatch, params.productId]);
     return (
-        //
         <div className="relative my-20">
             {status === 'rejected' && <ErrorPage />}
             {status === 'loading' ? (
@@ -36,7 +35,7 @@ export const ProductPage = () => {
                                 <img
                                     className="rounded-lg w-70 h-90"
                                     src={image}
-                                    alt="card image"
+                                    alt="card product"
                                 />
                             </div>
                             <div className="text-secondary w-2/3 flex-1 px-6">

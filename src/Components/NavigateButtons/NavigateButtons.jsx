@@ -31,9 +31,6 @@ export const NavigateButtons = () => {
                                         dispatch(filterCategory(e.target.value)),
                                         dispatch(filterSelected(selectedValue)),
                                     ]);
-
-                                    // dispatch(filterCategory(e.target.value));
-                                    // dispatch(filterSelected(selectedValue));
                                 }}
                                 value={category}
                                 color="gray"

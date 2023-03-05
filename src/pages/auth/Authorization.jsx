@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 export function Authorization() {
     return (
-        <div className="flex justify-center items-center my-40 ">
+        <div className="flex justify-center items-center mt-40 ">
             <div className="shadow-gray-900 shadow-card flex flex-col rounded-xl bg-white bg-clip-border w-[300px] shadow-md">
                 <div className="mx-4 -mt-6 translate-y-0">
                     <div className="shadow-cyan pe-1 rounded-lg bg-cyan-900 py-3">
@@ -45,16 +47,24 @@ export function Authorization() {
                     </form>
 
                     <button
-                        className="mt-6 middle none center rounded-lg bg-cyan-900 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-cyan-900 transition-all hover:shadow-lg hover:shadow-cyan-900 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="block w-[100%] mt-6 middle none center rounded-lg bg-cyan-900 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-cyan-900 transition-all hover:shadow-lg hover:shadow-cyan-900 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         data-ripple-light="true"
                     >
                         Sign In
                     </button>
-                    <a href="!#">
+                    <div className="text-center p-3 text-gray-500">--or--</div>
+                    <button
+                        className="block w-[100%]  middle none center rounded-lg bg-blue-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-900 transition-all hover:shadow-lg hover:shadow-blue-900 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        data-ripple-light="true"
+                    >
+                        <span className="inline">Sign in with Google</span>{' '}
+                    </button>
+                    <Link to="/registration">
                         <p className="mt-5 mb-0 text-center text-sm hover:text-cyan-900">
-                            Don&apos;t have an account?
+                            Don&apos;t have an account?{' '}
+                            <span className="font-semibold">Sign up</span>
                         </p>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -18,7 +18,10 @@ export const NavbarMenu = () => {
             <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
                 <NavLink
                     to="/"
-                    className="flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
+                    className=" hover:text-cyan-900 flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
+                    style={({ isActive }) =>
+                        isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                    }
                 >
                     Home
                 </NavLink>
@@ -26,7 +29,10 @@ export const NavbarMenu = () => {
             <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
                 <NavLink
                     to="/cabinet"
-                    className="flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
+                    className=" hover:text-cyan-900 flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
+                    style={({ isActive }) =>
+                        isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                    }
                 >
                     Cabinet
                 </NavLink>
@@ -37,7 +43,13 @@ export const NavbarMenu = () => {
                 color="blue-gray"
                 className="p-1 font-normal relative"
             >
-                <NavLink className="flex flex-row items-center cursor-pointer " to="/cart">
+                <NavLink
+                    className="flex flex-row items-center cursor-pointer "
+                    to="/cart"
+                    style={({ isActive }) =>
+                        isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                    }
+                >
                     <span className="absolute right-[130px] font-inter text-base font-medium traking-normal leading-none text-center mr-4">
                         {quantityGoods !== 0 ? quantityGoods : null}
                     </span>
@@ -55,7 +67,7 @@ export const NavbarMenu = () => {
                             d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                         />
                     </svg>
-                    <p className=" font-inter text-base font-medium traking-normal leading-none text-center mr-2">
+                    <p className="hover:text-cyan-900 font-inter text-base font-medium traking-normal leading-none text-center mr-2">
                         Shopping cart
                     </p>
                 </NavLink>
@@ -69,13 +81,32 @@ export const NavbarMenu = () => {
                 <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                     <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
                         <NavLink to="/">
-                            <span>Material Tailwind</span>
+                            <span className="hover:text-cyan-900">Material Tailwind</span>
                         </NavLink>
                     </Typography>
                     <div className="hidden lg:block">{navList}</div>
-                    <NavLink to="/authorization" className="hidden lg:inline-block">
-                        <span>Sign in</span>
-                    </NavLink>
+
+                    <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
+                        <NavLink
+                            style={({ isActive }) =>
+                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                            }
+                            to="/authorization"
+                            className="hidden lg:inline-block mr-3"
+                        >
+                            <span className="hover:text-cyan-900">Sign in</span>
+                        </NavLink>
+                        <NavLink
+                            style={({ isActive }) =>
+                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                            }
+                            to="/registration"
+                            className="hidden lg:inline-block"
+                        >
+                            <span className="hover:text-cyan-900">Sign up</span>
+                        </NavLink>
+                    </Typography>
+
                     <IconButton
                         variant="text"
                         className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -117,8 +148,27 @@ export const NavbarMenu = () => {
                 <MobileNav open={openNav}>
                     <div className="container mx-auto">
                         {navList}
-                        <NavLink to="/authorization" variant="gradient" size="sm" className="mb-2">
-                            <span>Sign in</span>
+                        <NavLink
+                            style={({ isActive }) =>
+                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                            }
+                            to="/authorization"
+                            variant="gradient"
+                            size="sm"
+                            className="mb-2 mr-2"
+                        >
+                            <span className="text-gray-900 hover:text-cyan-900">Sign in</span>
+                        </NavLink>
+                        <NavLink
+                            style={({ isActive }) =>
+                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                            }
+                            to="/registration"
+                            variant="gradient"
+                            size="sm"
+                            className="mb-2 "
+                        >
+                            <span className="text-gray-900 hover:text-cyan-900">Sign up</span>
                         </NavLink>
                     </div>
                 </MobileNav>

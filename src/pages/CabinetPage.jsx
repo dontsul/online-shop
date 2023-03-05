@@ -1,7 +1,7 @@
 export const CabinetPage = () => {
     return (
         <div>
-            <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 my-20">
+            <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 mt-20">
                 <div className="px-4 py-6 sm:px-0">
                     <h1 className="text-3xl font-bold mb-4">Welcome Vasiliy!</h1>
                     <div className="flex flex-col sm:flex-row sm:justify-between">
@@ -79,7 +79,7 @@ export const CabinetPage = () => {
                                         1 000 $
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <a href="#">Look at</a>
+                                        <a href="!#">Look at</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -98,7 +98,7 @@ export const CabinetPage = () => {
                                         2 000 $
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <a href="#">Look at</a>
+                                        <a href="!#">Look at</a>
                                     </td>
                                 </tr>
                             </tbody>

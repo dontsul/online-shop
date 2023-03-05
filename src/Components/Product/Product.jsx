@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../../features/slices/cartSlice';
 import { chanceTotalQuantity } from '../../features/slices/cartSlice';
 import { Button } from '@material-tailwind/react';
@@ -17,7 +17,7 @@ export const Product = (props) => {
             <div className="shadow-card flex flex-col rounded-xl bg-white bg-clip-border grow m-4">
                 <div className="mx-4 mt-4 translate-y-0 flex justify-center">
                     <div blur-shadow-image="true">
-                        <img className="w-auto rounded-lg h-40 w-40" src={image} alt="card image" />
+                        <img className="w-auto rounded-lg h-40 w-40" src={image} alt="product" />
                     </div>
                 </div>
                 <div className="text-secondary flex-1 p-2 ">
@@ -54,37 +54,6 @@ export const Product = (props) => {
                     </div>
                 </div>
             </div>
-            {/* <div className="max-w-sm rounded-lg overflow-hidden shadow-lg">
-                <img className="w-full" src={image} alt="Product" />
-                <div className="px-6 py-4">
-                    <h3 className="font-bold text-xl mb-2">{title}</h3>
-                    <p className="text-gray-700 text-base">{description.slice(0, 70)}...</p>
-                    <p className="text-gray-700 text-base">Category: {category}</p>
-                    <p className="text-gray-700 text-base">Rating: {rating.rate}</p>
-                </div>
-                <div className="px-6 py-4 flex justify-between">
-                    <span className="text-xl font-bold">Price: ${price}</span>
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                        Add to cart
-                    </button>
-                </div>
-            </div> */}
-            {/* <div class="max-w-sm rounded-lg overflow-hidden shadow-lg flex flex-col justify-between">
-                <img class="w-full" src="product.jpg" alt="Product" />
-                <div class="px-6 py-4">
-                    <h3 class="font-bold text-xl mb-2">Product Name</h3>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id justo id
-                        ipsum tristique pretium in eget metus.
-                    </p>
-                </div>
-                <div class="px-6 py-4 flex justify-between">
-                    <span class="text-xl font-bold">$19.99</span>
-                    <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                        Add to cart
-                    </button>
-                </div>
-            </div> */}
         </Link>
     );
 };

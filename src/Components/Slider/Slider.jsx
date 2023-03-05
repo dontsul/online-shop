@@ -20,7 +20,7 @@ export const Slider = () => {
                         >
                             <div>
                                 {parseInt(item.id) === sliderInd && (
-                                    <img className="h-[600px] w-full" src={item.img} alt="image" />
+                                    <img className="h-[600px] w-full" src={item.img} alt="slide" />
                                 )}
                             </div>
                             <div className="absolute top-44 mx-auto inset-x-1/4">

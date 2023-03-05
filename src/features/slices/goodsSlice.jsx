@@ -50,10 +50,11 @@ const goodsSlice = createSlice({
                         a.rating.rate < b.rating.rate ? 1 : -1
                     );
                     break;
-                case 'default':
-                    state.filteredGoods = state.filteredGoods;
+                // case 'default':
+                //     state.filteredGoods = state.filteredGoods;
 
                 default:
+                    state.filteredGoods = state.filteredGoods;
                     break;
             }
         },
