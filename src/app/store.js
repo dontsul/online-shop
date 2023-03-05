@@ -16,12 +16,14 @@ import sliderReducer from '../features/slices/sliderSlice';
 import { goodsReducers } from '../features/slices/goodsSlice';
 import { productReducers } from '../features/slices/productSlice';
 import { cartReducer } from '../features/slices/cartSlice';
+import { registrationReducer } from '../features/slices/registrationSlice';
 
 const rootReducer = combineReducers({
     goods: goodsReducers,
     slider: sliderReducer,
     product: productReducers,
     cart: cartReducer,
+    registration: registrationReducer,
 });
 
 const persistConfig = {

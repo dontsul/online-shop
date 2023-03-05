@@ -15,7 +15,7 @@ export const ProductPage = () => {
     const status = useSelector((state) => state.product.status);
     const params = useParams();
     const { id, title, price, category, description, image } = product;
-    console.log(product);
+
     const navigate = useNavigate();
     useEffect(() => {
         dispatch(fetchProduct(params.productId));
