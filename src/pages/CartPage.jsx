@@ -1,3 +1,9 @@
+import { ListProductCart } from '../Components/ListProductCart/ListProductCart';
+
 export const CartPage = () => {
-    return <div>Cart Page</div>;
+    return (
+        <>
+            <ListProductCart />
+        </>
+    );
 };

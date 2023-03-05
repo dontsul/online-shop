@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { nextSlide, prevSlide, dotSlide } from '../../features/slices/sliderSlice';
 import { sliderData } from '../../assets/data/dummyData';
 export const Slider = () => {
-    const slideIndex = useSelector((state) => state.slider.value);
+    const sliderInd = useSelector((state) => state.slider.numberSlide);
     const dispatch = useDispatch();
 
     return (
@@ -13,19 +13,19 @@ export const Slider = () => {
                         <div
                             key={item.id}
                             className={
-                                parseInt(item.id) === slideIndex
+                                parseInt(item.id) === sliderInd
                                     ? 'opacity-100 duration-700 ease-in-out scale-100'
                                     : 'opacity-0 duration-700 ease-in-out scale-95'
                             }
                         >
                             <div>
-                                {parseInt(item.id) === slideIndex && (
+                                {parseInt(item.id) === sliderInd && (
                                     <img className="h-[600px] w-full" src={item.img} alt="image" />
                                 )}
                             </div>
                             <div className="absolute top-44 mx-auto inset-x-1/4">
                                 <p className="text-white text-4x1 font-inter font-bold traking-normal leading-none">
-                                    {parseInt(item.id) === slideIndex && item.text}
+                                    {parseInt(item.id) === sliderInd && item.text}
                                 </p>
                             </div>
                         </div>
@@ -39,7 +39,7 @@ export const Slider = () => {
                             <div
                                 onClick={() => dispatch(dotSlide(index))}
                                 className={
-                                    index === slideIndex
+                                    index === sliderInd
                                         ? 'bg-cyan-900 rounded-full p-2 cursor-pointer'
                                         : 'bg-white rounded-full p-2 cursor-pointer'
                                 }
@@ -51,7 +51,7 @@ export const Slider = () => {
             <div>
                 <button
                     className="absolute top-[50%] right-4 bg-white rounded-full p-2 hover:bg-cyan-900"
-                    onClick={() => dispatch(nextSlide(slideIndex + 1))}
+                    onClick={() => dispatch(nextSlide(sliderInd + 1))}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ export const Slider = () => {
             </div>
             <button
                 className="absolute top-[50%] left-4 bg-white rounded-full p-2 hover:bg-cyan-900"
-                onClick={() => dispatch(prevSlide(slideIndex - 1))}
+                onClick={() => dispatch(prevSlide(sliderInd - 1))}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

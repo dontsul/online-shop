@@ -2,10 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { API_URL } from '../../config';
 
 export const fetchData = createAsyncThunk('fetchData', async function () {
-    const respons = await fetch(API_URL);
-    const data = await respons.json();
+    try {
+        const respons = await fetch(API_URL);
+        const data = await respons.json();
 
-    return data;
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 const goodsSlice = createSlice({

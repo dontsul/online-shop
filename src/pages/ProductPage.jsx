@@ -5,6 +5,9 @@ import { fetchProduct } from '../features/slices/productSlice';
 import { Button } from '@material-tailwind/react';
 import { MoonLoader } from 'react-spinners';
 import { ErrorPage } from '../pages/ErrorPage';
+import { addToCart } from '../features/slices/cartSlice';
+import { chanceTotalQuantity } from '../features/slices/cartSlice';
+import { addToMoney } from '../features/slices/cartSlice';
 
 export const ProductPage = () => {
     const dispatch = useDispatch();
@@ -19,7 +22,7 @@ export const ProductPage = () => {
     }, [dispatch]);
     return (
         //
-        <div className="relative ">
+        <div className="relative my-20">
             {status === 'rejected' && <ErrorPage />}
             {status === 'loading' ? (
                 <div className="flex justify-center items-center h-[100%] my-[200px]">
@@ -29,9 +32,9 @@ export const ProductPage = () => {
                 <div className="container py-12">
                     <div className="flex flex-col rounded-xl bg-white bg-transparent bg-clip-border shadow-none">
                         <div className="flex">
-                            <div className="w-1/3">
+                            <div className="w-1/3 w-70 h-90">
                                 <img
-                                    className="rounded-lg w-80 h-80"
+                                    className="rounded-lg w-70 h-90"
                                     src={image}
                                     alt="card image"
                                 />
@@ -47,7 +50,16 @@ export const ProductPage = () => {
                                 <p>
                                     <span className="font-bold">Price: {price}$</span>
                                 </p>
-                                <Button className="bg-cyan-900 my-8">Add to cart</Button>
+                                <Button
+                                    onClick={(e) => {
+                                        dispatch(addToCart(product));
+                                        dispatch(chanceTotalQuantity());
+                                        dispatch(addToMoney(price));
+                                    }}
+                                    className="bg-cyan-900 my-8"
+                                >
+                                    Add to cart
+                                </Button>
                             </div>
                             <div
                                 className="cursor-pointer w-6 h-6"

@@ -1,7 +1,7 @@
 export function Authorization() {
     return (
-        <div className="flex justify-center items-center m-20">
-            <div className="shadow-gray-900 shadow-card flex flex-col rounded-xl bg-white bg-clip-border w-[300px]">
+        <div className="flex justify-center items-center my-40 ">
+            <div className="shadow-gray-900 shadow-card flex flex-col rounded-xl bg-white bg-clip-border w-[300px] shadow-md">
                 <div className="mx-4 -mt-6 translate-y-0">
                     <div className="shadow-cyan pe-1 rounded-lg bg-cyan-900 py-3">
                         <h4 className="mt-2 mb-0 text-center font-bold text-white">Sign in</h4>
