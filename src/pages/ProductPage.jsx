@@ -5,10 +5,8 @@ import { fetchProduct } from '../features/slices/productSlice';
 import { Button } from '@material-tailwind/react';
 import { MoonLoader } from 'react-spinners';
 import { ErrorPage } from '../pages/ErrorPage';
-import { addToCart } from '../features/slices/cartSlice';
-import { chanceTotalQuantity } from '../features/slices/cartSlice';
-import { addToMoney } from '../features/slices/cartSlice';
 import { toast } from 'react-toastify';
+import { addItem } from '../features/slices/cartSlice';
 export const ProductPage = () => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.product.product);
@@ -20,9 +18,8 @@ export const ProductPage = () => {
     const navigate = useNavigate();
     const handleAddToCart = (e) => {
         if (statusLogin) {
-            dispatch(addToCart(product));
-            dispatch(chanceTotalQuantity());
-            dispatch(addToMoney(price));
+            dispatch(addItem(product));
+            toast.success(`Added to cart ${title.slice(0, 10)}`);
         } else {
             navigate('/authorization');
             toast.info('You need to Log in...');

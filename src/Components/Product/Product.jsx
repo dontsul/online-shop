@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../features/slices/cartSlice';
-import { chanceTotalQuantity } from '../../features/slices/cartSlice';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
-import { addToMoney } from '../../features/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { addItem } from '../../features/slices/cartSlice';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 export const Product = (props) => {
     const dispatch = useDispatch();
     const statusLogin = useSelector((state) => state.auth.isLoggedIn);
@@ -15,9 +14,8 @@ export const Product = (props) => {
 
     const handleAddToCart = (e) => {
         if (statusLogin) {
-            dispatch(addToCart(props.product));
-            dispatch(chanceTotalQuantity());
-            dispatch(addToMoney(price));
+            dispatch(addItem(props.product));
+            toast.success(`Added to cart ${title.slice(0, 10)}`);
         } else {
             navigate('/authorization');
             toast.info('You need to Log in...');

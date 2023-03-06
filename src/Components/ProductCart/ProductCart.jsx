@@ -1,14 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-tailwind/react';
-import { removeFromCart } from '../../features/slices/cartSlice';
-import { changeQuantity } from '../../features/slices/cartSlice';
-import { useEffect } from 'react';
-import { addToMoney } from '../../features/slices/cartSlice';
+import { removeItem, changeQuantity } from '../../features/slices/cartSlice';
 
 export const ProductCart = (props) => {
     const dispatch = useDispatch();
     const { id, title, price, description, image, quantity } = props.product;
-    useEffect(() => {}, []);
+
     return (
         <div>
             <li className="flex justify-between py-2">
@@ -21,7 +18,6 @@ export const ProductCart = (props) => {
                             <Button
                                 onClick={() => {
                                     dispatch(changeQuantity({ id, value: -1 }));
-                                    dispatch(addToMoney(-price));
                                 }}
                                 className="py-1 px-3 bg-cyan-900 mr-2"
                             >
@@ -31,7 +27,6 @@ export const ProductCart = (props) => {
                             <Button
                                 onClick={() => {
                                     dispatch(changeQuantity({ id, value: 1 }));
-                                    dispatch(addToMoney(price));
                                 }}
                                 className="py-1 px-3 bg-cyan-900 ml-2"
                             >
@@ -42,8 +37,7 @@ export const ProductCart = (props) => {
                         <div>
                             <Button
                                 onClick={(e) => {
-                                    dispatch(removeFromCart(id));
-                                    dispatch(addToMoney(0));
+                                    dispatch(removeItem(id));
                                 }}
                                 className="bg-cyan-900 "
                             >

@@ -77,7 +77,7 @@ export const CabinetPage = () => {
                                         #00001
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        01.01.2022
+                                        01.03.2023
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -88,7 +88,7 @@ export const CabinetPage = () => {
                                         1 000 $
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <a href="!#">Look at</a>
+                                        <p>Look at</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -96,7 +96,7 @@ export const CabinetPage = () => {
                                         #00002
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        01.02.2022
+                                        07.03.2023
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
@@ -107,7 +107,7 @@ export const CabinetPage = () => {
                                         2 000 $
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <a href="!#">Look at</a>
+                                        <p>Look at</p>
                                     </td>
                                 </tr>
                             </tbody>

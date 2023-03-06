@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { nextSlide, prevSlide, dotSlide } from '../../features/slices/sliderSlice';
-import { sliderData } from '../../assets/data/dummyData';
+import { sliderData } from '../../assets/data/data';
 export const Slider = () => {
     const sliderInd = useSelector((state) => state.slider.numberSlide);
     const dispatch = useDispatch();

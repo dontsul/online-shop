@@ -2,12 +2,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Navbar, MobileNav, Typography, IconButton } from '@material-tailwind/react';
-import { changeStatusLogin } from '../../features/slices/authorizationSlice';
 import { getAuth, signOut } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/configFirebase';
 import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../features/slices/authSlice';
-import { ToastContainer, toast } from 'react-toastify';
+import { chanceTotalQuantity } from '../../features/slices/cartSlice';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const NavbarMenu = () => {
@@ -17,18 +17,7 @@ export const NavbarMenu = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [displayName, setDisplayName] = useState('');
-
-    const logOutUser = () => {
-        const auth = getAuth();
-        signOut(auth)
-            .then(() => {
-                navigate('/');
-                toast.success('Sign out succssesfully');
-            })
-            .catch((error) => {
-                toast.error(error.message);
-            });
-    };
+    const cartItems = useSelector((state) => state.cart.items);
 
     const navList = (
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -93,6 +82,22 @@ export const NavbarMenu = () => {
     );
 
     useEffect(() => {
+        dispatch(chanceTotalQuantity());
+    }, [cartItems]);
+
+    const logOutUser = () => {
+        const auth = getAuth();
+        signOut(auth)
+            .then(() => {
+                navigate('/');
+                toast.success('Sign out succssesfully');
+            })
+            .catch((error) => {
+                toast.error(error.message);
+            });
+    };
+
+    useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 if (user.displayName === null) {
@@ -123,13 +128,21 @@ export const NavbarMenu = () => {
 
     return (
         <>
-            {/* <ToastContainer /> */}
             <div className=" flex justify-center">
                 <Navbar className="mx-auto w-[85%] py-2 px-4 lg:px-8 lg:py-4 z-40 fixed ">
                     <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                         <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
-                            <NavLink to="/">
-                                <span className="hover:text-cyan-900">Material Tailwind</span>
+                            <NavLink className="relative" to="/">
+                                <span className="absolute top-[-34px] hover:text-cyan-900">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 50 50"
+                                        width="70px"
+                                        height="70px"
+                                    >
+                                        <path d="M 3.53125 24.222656 C 4.5 26.84375 6.957031 28.382813 10.417969 28.382813 C 11.300781 28.382813 12.203125 28.253906 13.089844 28.003906 C 13.234375 27.96875 18.75 26.472656 25.484375 24.644531 C 18.839844 27.519531 13.074219 29.996094 11.90625 30.460938 L 11.84375 30.488281 C 10.164063 31.160156 8.070313 31.996094 6.132813 31.996094 C 2.742188 31.996094 2 29.761719 2 28.902344 C 2 27.902344 2.335938 26.398438 3.53125 24.222656 M 49.839844 16.003906 C 49.785156 16.003906 49.722656 16.011719 49.644531 16.03125 C 49.480469 16.070313 12.566406 26.074219 12.566406 26.074219 C 11.855469 26.273438 11.128906 26.382813 10.417969 26.382813 C 7.226563 26.382813 5.078125 24.851563 5.078125 21.507813 C 5.078125 20.207031 5.484375 18.640625 6.40625 16.800781 C 3.152344 20.621094 0 25.234375 0 28.902344 C 0 31.019531 1.78125 33.996094 6.128906 33.996094 C 8.484375 33.996094 10.820313 33.050781 12.648438 32.320313 C 15.730469 31.085938 49.789063 16.296875 49.789063 16.296875 C 50.058594 16.164063 50.066406 16.003906 49.839844 16.003906 Z" />
+                                    </svg>
+                                </span>
                             </NavLink>
                         </Typography>
                         <div className="hidden lg:block">{navList}</div>
