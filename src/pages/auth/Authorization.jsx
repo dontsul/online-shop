@@ -10,7 +10,7 @@ import {
     changeUserLoginEmail,
     changeUserLoginPassword,
     changeStatusLoginLoading,
-    changeStatusLogin,
+    // changeStatusLogin,
 } from '../../features/slices/authorizationSlice';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/configFirebase';
@@ -31,9 +31,8 @@ export function Authorization() {
         dispatch(changeStatusLoginLoading(true));
         signInWithEmailAndPassword(auth, userLoginEmail, userLoginPassword)
             .then((userCredential) => {
-                const user = userCredential.user;
                 dispatch(changeStatusLoginLoading(false));
-                dispatch(changeStatusLogin(true));
+                // dispatch(changeStatusLogin(true));
                 toast.success('Login successful');
                 dispatch(changeUserLoginEmail(''));
                 dispatch(changeUserLoginPassword(''));
@@ -54,7 +53,7 @@ export function Authorization() {
                 const user = result.user;
                 toast.success('Login successful');
                 dispatch(changeStatusLoginLoading(false));
-                dispatch(changeStatusLogin(true));
+                // dispatch(changeStatusLogin(true));
                 navigate('/');
             })
             .catch((error) => {
@@ -65,7 +64,6 @@ export function Authorization() {
 
     return (
         <>
-            <ToastContainer />
             {isLoginLoading && <Loader type={'Authorization'} />}
             <div className="flex justify-center items-center mt-40 ">
                 <div className="shadow-gray-900 shadow-card flex flex-col rounded-xl bg-white bg-clip-border w-[300px] shadow-md">

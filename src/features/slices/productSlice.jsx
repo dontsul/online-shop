@@ -8,7 +8,7 @@ export const fetchProduct = createAsyncThunk('fetchProduct', async function (id)
 
         return data;
     } catch (error) {
-        console.log(error);
+        console.error(error.message);
     }
 });
 

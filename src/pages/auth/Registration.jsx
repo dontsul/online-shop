@@ -60,7 +60,7 @@ export const Registration = () => {
     };
     return (
         <>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
             {isLoading && <Loader type={'Registration'} />}
             <div className="flex justify-center items-center mt-40 mb-20">
                 <div className="shadow-gray-900 shadow-card flex flex-col rounded-xl bg-white bg-clip-border w-[300px] shadow-md">

@@ -4,26 +4,25 @@ import { useState, useEffect } from 'react';
 import { Navbar, MobileNav, Typography, IconButton } from '@material-tailwind/react';
 import { changeStatusLogin } from '../../features/slices/authorizationSlice';
 import { getAuth, signOut } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../firebase/configFirebase';
+import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../features/slices/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const NavbarMenu = () => {
     const [openNav, setOpenNav] = useState(false);
     const quantityGoods = useSelector((state) => state.cart.quantityGoods);
-    const statusLogin = useSelector((state) => state.authorization.isLogin);
+    const statusLogin = useSelector((state) => state.auth.isLoggedIn);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isLoginLoading = useSelector((state) => state.authorization.isLoading);
-    useEffect(() => {
-        window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
-    }, []);
+    const [displayName, setDisplayName] = useState('');
 
     const logOutUser = () => {
         const auth = getAuth();
         signOut(auth)
             .then(() => {
-                dispatch(changeStatusLogin(false));
-                // navigate('/');
+                navigate('/');
                 toast.success('Sign out succssesfully');
             })
             .catch((error) => {
@@ -93,9 +92,38 @@ export const NavbarMenu = () => {
         </ul>
     );
 
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                if (user.displayName === null) {
+                    const user1 = user.email.substring(0, user.email.indexOf('@'));
+                    const uName = user1.charAt(0).toUpperCase() + user1.slice(1);
+                    setDisplayName(uName);
+                } else {
+                    setDisplayName(user.displayName);
+                }
+
+                dispatch(
+                    SET_ACTIVE_USER({
+                        email: user.email,
+                        userName: user.displayName ? user.displayName : displayName,
+                        userID: user.uid,
+                    })
+                );
+            } else {
+                setDisplayName('');
+                dispatch(REMOVE_ACTIVE_USER());
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
+    }, []);
+
     return (
         <>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
             <div className=" flex justify-center">
                 <Navbar className="mx-auto w-[85%] py-2 px-4 lg:px-8 lg:py-4 z-40 fixed ">
                     <div className="container mx-auto flex items-center justify-between text-blue-gray-900">

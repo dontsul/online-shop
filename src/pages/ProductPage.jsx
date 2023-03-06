@@ -8,15 +8,26 @@ import { ErrorPage } from '../pages/ErrorPage';
 import { addToCart } from '../features/slices/cartSlice';
 import { chanceTotalQuantity } from '../features/slices/cartSlice';
 import { addToMoney } from '../features/slices/cartSlice';
-
+import { toast } from 'react-toastify';
 export const ProductPage = () => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.product.product);
     const status = useSelector((state) => state.product.status);
+    const statusLogin = useSelector((state) => state.auth.isLoggedIn);
     const params = useParams();
-    const { id, title, price, category, description, image } = product;
+    const { title, price, category, description, image } = product;
 
     const navigate = useNavigate();
+    const handleAddToCart = (e) => {
+        if (statusLogin) {
+            dispatch(addToCart(product));
+            dispatch(chanceTotalQuantity());
+            dispatch(addToMoney(price));
+        } else {
+            navigate('/authorization');
+            toast.info('You need to Log in...');
+        }
+    };
     useEffect(() => {
         dispatch(fetchProduct(params.productId));
     }, [dispatch, params.productId]);
@@ -51,9 +62,8 @@ export const ProductPage = () => {
                                 </p>
                                 <Button
                                     onClick={(e) => {
-                                        dispatch(addToCart(product));
-                                        dispatch(chanceTotalQuantity());
-                                        dispatch(addToMoney(price));
+                                        e.preventDefault();
+                                        handleAddToCart(e);
                                     }}
                                     className="bg-cyan-900 my-8"
                                 >
