@@ -1,17 +1,35 @@
-import { NavLink } from 'react-router-dom';
-// import logo from '../../assets/images/logo.png';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Navbar, MobileNav, Typography, IconButton } from '@material-tailwind/react';
-import { useSelector } from 'react-redux';
+import { changeStatusLogin } from '../../features/slices/authorizationSlice';
+import { getAuth, signOut } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const NavbarMenu = () => {
     const [openNav, setOpenNav] = useState(false);
     const quantityGoods = useSelector((state) => state.cart.quantityGoods);
-    // console.log(quantityGoods);
-
+    const statusLogin = useSelector((state) => state.authorization.isLogin);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isLoginLoading = useSelector((state) => state.authorization.isLoading);
     useEffect(() => {
         window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
     }, []);
+
+    const logOutUser = () => {
+        const auth = getAuth();
+        signOut(auth)
+            .then(() => {
+                dispatch(changeStatusLogin(false));
+                // navigate('/');
+                toast.success('Sign out succssesfully');
+            })
+            .catch((error) => {
+                toast.error(error.message);
+            });
+    };
 
     const navList = (
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -76,103 +94,138 @@ export const NavbarMenu = () => {
     );
 
     return (
-        <div className=" flex justify-center">
-            <Navbar className="mx-auto w-[85%] py-2 px-4 lg:px-8 lg:py-4 z-40 fixed ">
-                <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-                    <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
-                        <NavLink to="/">
-                            <span className="hover:text-cyan-900">Material Tailwind</span>
-                        </NavLink>
-                    </Typography>
-                    <div className="hidden lg:block">{navList}</div>
+        <>
+            <ToastContainer />
+            <div className=" flex justify-center">
+                <Navbar className="mx-auto w-[85%] py-2 px-4 lg:px-8 lg:py-4 z-40 fixed ">
+                    <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+                        <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
+                            <NavLink to="/">
+                                <span className="hover:text-cyan-900">Material Tailwind</span>
+                            </NavLink>
+                        </Typography>
+                        <div className="hidden lg:block">{navList}</div>
 
-                    <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
-                        <NavLink
-                            style={({ isActive }) =>
-                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
-                            }
-                            to="/authorization"
-                            className="hidden lg:inline-block mr-3"
-                        >
-                            <span className="hover:text-cyan-900">Sign in</span>
-                        </NavLink>
-                        <NavLink
-                            style={({ isActive }) =>
-                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
-                            }
-                            to="/registration"
-                            className="hidden lg:inline-block"
-                        >
-                            <span className="hover:text-cyan-900">Sign up</span>
-                        </NavLink>
-                    </Typography>
+                        <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
+                            {statusLogin ? (
+                                <NavLink
+                                    onClick={logOutUser}
+                                    to="/"
+                                    className="hidden lg:inline-block mr-3"
+                                >
+                                    <span className="hover:text-cyan-900">Sign out</span>
+                                </NavLink>
+                            ) : (
+                                <NavLink
+                                    style={({ isActive }) =>
+                                        isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                                    }
+                                    to="/authorization"
+                                    className="hidden lg:inline-block mr-3"
+                                >
+                                    <span className="hover:text-cyan-900">Sign in</span>
+                                </NavLink>
+                            )}
+                            {!statusLogin && (
+                                <NavLink
+                                    style={({ isActive }) =>
+                                        isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                                    }
+                                    to="/registration"
+                                    className="hidden lg:inline-block"
+                                >
+                                    <span className="hover:text-cyan-900">Sign up</span>
+                                </NavLink>
+                            )}
+                        </Typography>
 
-                    <IconButton
-                        variant="text"
-                        className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-                        ripple={false}
-                        onClick={() => setOpenNav(!openNav)}
-                    >
-                        {openNav ? (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                className="h-6 w-6"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        ) : (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            </svg>
-                        )}
-                    </IconButton>
-                </div>
-                <MobileNav open={openNav}>
-                    <div className="container mx-auto">
-                        {navList}
-                        <NavLink
-                            style={({ isActive }) =>
-                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
-                            }
-                            to="/authorization"
-                            variant="gradient"
-                            size="sm"
-                            className="mb-2 mr-2"
+                        <IconButton
+                            variant="text"
+                            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+                            ripple={false}
+                            onClick={() => setOpenNav(!openNav)}
                         >
-                            <span className="text-gray-900 hover:text-cyan-900">Sign in</span>
-                        </NavLink>
-                        <NavLink
-                            style={({ isActive }) =>
-                                isActive ? { color: '#006064', fontWeight: 'bold' } : {}
-                            }
-                            to="/registration"
-                            variant="gradient"
-                            size="sm"
-                            className="mb-2 "
-                        >
-                            <span className="text-gray-900 hover:text-cyan-900">Sign up</span>
-                        </NavLink>
+                            {openNav ? (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    className="h-6 w-6"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M6 18L18 6M6 6l12 12"
+                                    />
+                                </svg>
+                            ) : (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-6 w-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
+                                </svg>
+                            )}
+                        </IconButton>
                     </div>
-                </MobileNav>
-            </Navbar>
-        </div>
+                    <MobileNav open={openNav}>
+                        <div className="container mx-auto">
+                            {navList}
+                            {statusLogin ? (
+                                <NavLink
+                                    onClick={logOutUser}
+                                    to="/"
+                                    size="sm"
+                                    className="mb-2 mr-2"
+                                >
+                                    <span className="text-gray-900 hover:text-cyan-900">
+                                        Sign out
+                                    </span>
+                                </NavLink>
+                            ) : (
+                                <NavLink
+                                    style={({ isActive }) =>
+                                        isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                                    }
+                                    to="/authorization"
+                                    variant="gradient"
+                                    size="sm"
+                                    className="mb-2 mr-2"
+                                >
+                                    <span className="text-gray-900 hover:text-cyan-900">
+                                        Sign in
+                                    </span>
+                                </NavLink>
+                            )}
+
+                            {!statusLogin && (
+                                <NavLink
+                                    style={({ isActive }) =>
+                                        isActive ? { color: '#006064', fontWeight: 'bold' } : {}
+                                    }
+                                    to="/registration"
+                                    variant="gradient"
+                                    size="sm"
+                                    className="mb-2 "
+                                >
+                                    <span className="text-gray-900 hover:text-cyan-900">
+                                        Sign up
+                                    </span>
+                                </NavLink>
+                            )}
+                        </div>
+                    </MobileNav>
+                </Navbar>
+            </div>
+        </>
     );
 };
