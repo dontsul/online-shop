@@ -20,7 +20,7 @@ export const ListProduct = () => {
                     <MoonLoader color="#006064" />
                 </div>
             ) : (
-                <div className="container grid grid-cols-3 gap-3 py-8">
+                <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 py-4">
                     {products.map((product) => {
                         return <Product key={product.id} product={product} />;
                     })}

@@ -3,19 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRef, useState } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from '../../Components/Loader/Loader';
 import {
     changeUserLoginEmail,
     changeUserLoginPassword,
     changeStatusLoginLoading,
-    // changeStatusLogin,
 } from '../../features/slices/authorizationSlice';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/configFirebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-
+// import { subscribeToCartChanges } from '../../features/slices/cartSlice';
+// import { store } from '../../app/store';
+// import { fetchCartData } from '../../features/slices/authSlice';
 export function Authorization() {
     const [eye, setEye] = useState(false);
     const inputPassword = useRef(null);
@@ -32,11 +33,12 @@ export function Authorization() {
         signInWithEmailAndPassword(auth, userLoginEmail, userLoginPassword)
             .then((userCredential) => {
                 dispatch(changeStatusLoginLoading(false));
-                // dispatch(changeStatusLogin(true));
                 toast.success('Login successful');
                 dispatch(changeUserLoginEmail(''));
                 dispatch(changeUserLoginPassword(''));
                 navigate('/');
+                // subscribeToCartChanges(store.getState().auth.userID, store);
+                // dispatch(fetchCartData(store.getState().auth.userID));
             })
             .catch((error) => {
                 toast.error(error.message);

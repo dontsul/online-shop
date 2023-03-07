@@ -15,16 +15,16 @@ export const ListProductCart = () => {
     useEffect(() => {
         dispatch(countingTotalMoney());
 
-        const auth = getAuth();
-        const userId = auth.currentUser?.uid;
-        console.log(userId);
-        if (userId) {
-            const cartRef = ref(database, `users/${userId}/cart`);
-            onValue(cartRef, (snapshot) => {
-                const cartItems = snapshot.val();
-                dispatch(setCart(cartItems || []));
-            });
-        }
+        // const auth = getAuth();
+        // const userId = auth.currentUser?.uid;
+        // console.log(userId);
+        // if (userId) {
+        //     const cartRef = ref(database, `users/${userId}/cart`);
+        //     onValue(cartRef, (snapshot) => {
+        //         const cartItems = snapshot.val();
+        //         dispatch(setCart(cartItems || []));
+        //     });
+        // }
     }, [dispatch, cartItems]);
 
     return (

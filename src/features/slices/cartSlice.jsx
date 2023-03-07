@@ -1,5 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import firebase from 'firebase/compat/app';
+export const subscribeToCartChanges = (userId, store) => {
+    const cartRef = firebase.database().ref(`carts/${userId}`);
+    store.subscribe(() => {
+        const { items, quantityGoods, money } = store.getState().cart;
+        cartRef.set({ items, quantityGoods, money });
+    });
+};
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -21,13 +28,7 @@ const cartSlice = createSlice({
         },
 
         removeItem: (state, action) => {
-            // const existingItem = state.items.find((item) => item.id === id);
-            // if (existingItem && existingItem.quantity > 1) {
-            //     existingItem.quantity -= 1;
-            // } else {
-
             state.items = state.items.filter((item) => item.id !== action.payload);
-            // }
         },
 
         clearCart: (state) => {

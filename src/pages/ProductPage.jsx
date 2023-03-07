@@ -41,7 +41,7 @@ export const ProductPage = () => {
                         <div className="flex">
                             <div className="w-1/3 w-70 h-90">
                                 <img
-                                    className="rounded-lg w-70 h-90"
+                                    className="rounded-lg w-[250px] h-[300px]"
                                     src={image}
                                     alt="card product"
                                 />

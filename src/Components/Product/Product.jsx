@@ -26,7 +26,7 @@ export const Product = (props) => {
         <>
             <Link
                 to={`/${id}`}
-                className="flex flex-column shadow-md shadow-cyan-900  rounded-lg cursor-pointer "
+                className="flex flex-column shadow-md shadow-cyan-900 rounded-lg cursor-pointer border rounded-md overflow-hidden"
             >
                 <div className="shadow-card flex flex-col rounded-xl bg-white bg-clip-border grow m-4">
                     <div className="mx-4 mt-4 translate-y-0 flex justify-center">
@@ -62,7 +62,7 @@ export const Product = (props) => {
                                         e.preventDefault();
                                         handleAddToCart(e);
                                     }}
-                                    className="bg-cyan-900"
+                                    className="p-3 bg-cyan-900"
                                 >
                                     Add to cart
                                 </Button>

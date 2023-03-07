@@ -3,7 +3,9 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { getDatabase, ref, onValue } from 'firebase/database';
-
+// import firebase from 'firebase/compat/app';
+// import 'firebase/compat/auth';
+// import 'firebase/compat/database';
 // Your web app's Firebase configuration
 export const firebaseConfig = {
     apiKey: 'AIzaSyDpnegMawmDgVbtvlemlpfAqbsjLuXHmBc',
@@ -14,7 +16,7 @@ export const firebaseConfig = {
     appId: '1:398788957556:web:9d1c20a2eaf8616485c821',
     databaseURL: 'https://online-shop.firebaseio.com',
 };
-
+// firebase.initializeApp(firebaseConfig);
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
@@ -23,16 +25,4 @@ export const storage = getStorage(app);
 
 export default app;
 
-export const database = getDatabase();
-
-import firebase from 'firebase';
-import 'firebase/firestore';
-
-// firebase.initializeApp(firebaseConfig);
-
-// const auth = firebase.auth();
-// const storage = firebase.storage();
-// const db = firebase.firestore();
-const fs = firebase;
-
-export { auth, storage, db, fs };
+// export const database = getDatabase();

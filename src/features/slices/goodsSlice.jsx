@@ -71,7 +71,9 @@ const goodsSlice = createSlice({
                 ...Array.from(new Set(action.payload.map((el) => el.category))),
             ];
         },
-        [fetchData.rejected]: (state, action) => {},
+        [fetchData.rejected]: (state, action) => {
+            console.log('some problem...');
+        },
     },
 });
 

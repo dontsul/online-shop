@@ -9,6 +9,7 @@ import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../features/slices/authS
 import { chanceTotalQuantity } from '../../features/slices/cartSlice';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { clearCart } from '../../features/slices/cartSlice';
 
 export const NavbarMenu = () => {
     const [openNav, setOpenNav] = useState(false);
@@ -91,6 +92,7 @@ export const NavbarMenu = () => {
             .then(() => {
                 navigate('/');
                 toast.success('Sign out succssesfully');
+                dispatch(clearCart());
             })
             .catch((error) => {
                 toast.error(error.message);
