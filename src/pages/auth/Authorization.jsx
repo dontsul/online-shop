@@ -13,10 +13,9 @@ import {
 } from '../../features/slices/authorizationSlice';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/configFirebase';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-// import { subscribeToCartChanges } from '../../features/slices/cartSlice';
-// import { store } from '../../app/store';
-// import { fetchCartData } from '../../features/slices/authSlice';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { setUid } from '../../features/slices/cartSlice';
+
 export function Authorization() {
     const [eye, setEye] = useState(false);
     const inputPassword = useRef(null);
@@ -25,7 +24,7 @@ export function Authorization() {
     const userLoginPassword = useSelector((state) => state.authorization.form.userPassword);
     const isLoginLoading = useSelector((state) => state.authorization.isLoading);
     const navigate = useNavigate();
-
+    const userId = useSelector((state) => state.auth?.userID);
     //email
     const loginUser = (e) => {
         e.preventDefault();
@@ -36,9 +35,8 @@ export function Authorization() {
                 toast.success('Login successful');
                 dispatch(changeUserLoginEmail(''));
                 dispatch(changeUserLoginPassword(''));
+                dispatch(setUid(userId));
                 navigate('/');
-                // subscribeToCartChanges(store.getState().auth.userID, store);
-                // dispatch(fetchCartData(store.getState().auth.userID));
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -52,10 +50,9 @@ export function Authorization() {
         dispatch(changeStatusLoginLoading(true));
         signInWithPopup(auth, provider)
             .then((result) => {
-                const user = result.user;
                 toast.success('Login successful');
                 dispatch(changeStatusLoginLoading(false));
-                // dispatch(changeStatusLogin(true));
+
                 navigate('/');
             })
             .catch((error) => {

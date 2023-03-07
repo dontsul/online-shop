@@ -9,7 +9,6 @@ const authorizationSlice = createSlice({
         },
 
         isLoading: false,
-        // isLogin: false,
     },
     reducers: {
         changeUserLoginEmail(state, action) {
@@ -22,16 +21,9 @@ const authorizationSlice = createSlice({
         changeStatusLoginLoading(state, action) {
             state.isLoading = action.payload;
         },
-        // changeStatusLogin(state, action) {
-        //     state.isLogin = action.payload;
-        // },
     },
 });
 
 export const authorizationReducer = authorizationSlice.reducer;
-export const {
-    changeUserLoginEmail,
-    changeUserLoginPassword,
-    changeStatusLoginLoading,
-    // changeStatusLogin,
-} = authorizationSlice.actions;
+export const { changeUserLoginEmail, changeUserLoginPassword, changeStatusLoginLoading } =
+    authorizationSlice.actions;

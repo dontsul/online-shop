@@ -1,12 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-// import firebase from 'firebase/compat/app';
-
-// export const fetchCartData = createAsyncThunk('cart/fetchCartData', async (userId) => {
-//     const cartRef = firebase.database().ref(`carts/${userId}`);
-//     const snapshot = await cartRef.once('value');
-//     return snapshot.val() || { items: [], quantityGoods: 0, money: 0 };
-// });
 
 const authSlice = createSlice({
     name: 'auth',
@@ -31,14 +23,6 @@ const authSlice = createSlice({
             state.userID = null;
         },
     },
-    // extraReducers: {
-    //     [fetchCartData.pending]: (state, action) => {
-    //         state.status = 'loading';
-    //     },
-    //     [fetchCartData.fulfilled]: (state, action) => {
-    //         state.status = 'resolved';
-    //     },
-    // },
 });
 
 export const { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } = authSlice.actions;

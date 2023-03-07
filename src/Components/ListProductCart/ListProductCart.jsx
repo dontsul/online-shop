@@ -1,10 +1,7 @@
 import { ProductCart } from '../ProductCart/ProductCart';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCart } from '../../features/slices/cartSlice';
-import { getAuth } from 'firebase/auth';
-import { database } from '../../firebase/configFirebase';
-import { getDatabase, ref, onValue } from 'firebase/database';
+
 import { countingTotalMoney } from '../../features/slices/cartSlice';
 
 export const ListProductCart = () => {
@@ -12,19 +9,9 @@ export const ListProductCart = () => {
     const cartItems = useSelector((state) => state.cart.items);
     const totalMoney = useSelector((state) => state.cart.money);
 
+    //--------------------
     useEffect(() => {
         dispatch(countingTotalMoney());
-
-        // const auth = getAuth();
-        // const userId = auth.currentUser?.uid;
-        // console.log(userId);
-        // if (userId) {
-        //     const cartRef = ref(database, `users/${userId}/cart`);
-        //     onValue(cartRef, (snapshot) => {
-        //         const cartItems = snapshot.val();
-        //         dispatch(setCart(cartItems || []));
-        //     });
-        // }
     }, [dispatch, cartItems]);
 
     return (

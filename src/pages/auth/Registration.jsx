@@ -13,7 +13,7 @@ import {
 import { AiOutlineEye } from 'react-icons/ai';
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/configFirebase';
@@ -26,8 +26,7 @@ export const Registration = () => {
     const inputCP = useRef(null);
 
     const dispatch = useDispatch();
-    // const userName = useSelector((state) => state.registration.form.userName);
-    // const userSurname = useSelector((state) => state.registration.form.userSurname);
+
     const userEmail = useSelector((state) => state.registration.form.userEmail);
     const userPassword = useSelector((state) => state.registration.form.userPassword);
     const userCPassword = useSelector((state) => state.registration.form.userCPassword);
@@ -44,7 +43,6 @@ export const Registration = () => {
 
             createUserWithEmailAndPassword(auth, userEmail, userPassword)
                 .then((userCredential) => {
-                    const user = userCredential.user;
                     dispatch(changeStatusLoading(false));
                     toast.success('Registration successful');
                     navigate('/authorization');
