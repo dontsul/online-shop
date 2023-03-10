@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { AiFillFacebook, AiOutlineInstagram, AiFillTwitterCircle } from 'react-icons/ai';
 export const Footer = () => {
     return (

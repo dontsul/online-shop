@@ -24,7 +24,7 @@ export const NavbarMenu = () => {
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
             <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
                 <NavLink
-                    to="/"
+                    to="/shop"
                     className=" hover:text-cyan-900 flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
                     style={({ isActive }) =>
                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
@@ -35,7 +35,7 @@ export const NavbarMenu = () => {
             </Typography>
             <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
                 <NavLink
-                    to="/cabinet"
+                    to="/shop/cabinet"
                     className=" hover:text-cyan-900 flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
                     style={({ isActive }) =>
                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
@@ -52,7 +52,7 @@ export const NavbarMenu = () => {
             >
                 <NavLink
                     className="flex flex-row items-center cursor-pointer "
-                    to="/cart"
+                    to="/shop/cart"
                     style={({ isActive }) =>
                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                     }
@@ -84,13 +84,13 @@ export const NavbarMenu = () => {
 
     useEffect(() => {
         dispatch(chanceTotalQuantity());
-    }, [cartItems]);
+    }, [dispatch, cartItems]);
 
     const logOutUser = () => {
         const auth = getAuth();
         signOut(auth)
             .then(() => {
-                navigate('/');
+                navigate('/shop');
                 toast.success('Sign out succssesfully');
                 dispatch(clearCart());
             })
@@ -122,7 +122,7 @@ export const NavbarMenu = () => {
                 dispatch(REMOVE_ACTIVE_USER());
             }
         });
-    }, []);
+    }, [dispatch, displayName]);
 
     useEffect(() => {
         window.addEventListener('resize', () => window.innerWidth >= 960 && setOpenNav(false));
@@ -134,7 +134,7 @@ export const NavbarMenu = () => {
                 <Navbar className="mx-auto w-[85%] py-2 px-4 lg:px-8 lg:py-4 z-40 fixed ">
                     <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                         <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
-                            <NavLink className="relative" to="/">
+                            <NavLink className="relative" to="/shop">
                                 <span className="absolute top-[-34px] hover:text-cyan-900">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +153,7 @@ export const NavbarMenu = () => {
                             {statusLogin ? (
                                 <NavLink
                                     onClick={logOutUser}
-                                    to="/"
+                                    to="/shop"
                                     className="hidden lg:inline-block mr-3"
                                 >
                                     <span className="hover:text-cyan-900">Sign out</span>
@@ -163,7 +163,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/authorization"
+                                    to="/shop/authorization"
                                     className="hidden lg:inline-block mr-3"
                                 >
                                     <span className="hover:text-cyan-900">Sign in</span>
@@ -174,7 +174,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/registration"
+                                    to="/shop/registration"
                                     className="hidden lg:inline-block"
                                 >
                                     <span className="hover:text-cyan-900">Sign up</span>
@@ -226,7 +226,7 @@ export const NavbarMenu = () => {
                             {statusLogin ? (
                                 <NavLink
                                     onClick={logOutUser}
-                                    to="/"
+                                    to="/shop"
                                     size="sm"
                                     className="mb-2 mr-2"
                                 >
@@ -239,7 +239,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/authorization"
+                                    to="/shop/authorization"
                                     variant="gradient"
                                     size="sm"
                                     className="mb-2 mr-2"
@@ -255,7 +255,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/registration"
+                                    to="/shop/registration"
                                     variant="gradient"
                                     size="sm"
                                     className="mb-2 "

@@ -36,7 +36,7 @@ export function Authorization() {
                 dispatch(changeUserLoginEmail(''));
                 dispatch(changeUserLoginPassword(''));
                 dispatch(setUid(userId));
-                navigate('/');
+                navigate('/shop');
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -53,7 +53,7 @@ export function Authorization() {
                 toast.success('Login successful');
                 dispatch(changeStatusLoginLoading(false));
 
-                navigate('/');
+                navigate('/shop');
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -64,7 +64,7 @@ export function Authorization() {
     return (
         <>
             {isLoginLoading && <Loader type={'Authorization'} />}
-            <div className="flex justify-center items-center mt-40 ">
+            <div className="flex justify-center items-center my-40 ">
                 <div className="shadow-gray-900 shadow-card flex flex-col rounded-xl bg-white bg-clip-border w-[300px] shadow-md">
                     <div className="mx-4 -mt-6 translate-y-0">
                         <div className="shadow-cyan pe-1 rounded-lg bg-cyan-900 py-3">
@@ -153,7 +153,7 @@ export function Authorization() {
                         >
                             Sign in with Google
                         </button>
-                        <Link to="/registration">
+                        <Link to="/shop/registration">
                             <p className="mt-5 mb-0 text-center text-sm hover:text-cyan-900">
                                 Don&apos;t have an account?{' '}
                                 <span className="font-semibold">Sign up</span>

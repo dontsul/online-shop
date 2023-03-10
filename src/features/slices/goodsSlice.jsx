@@ -51,9 +51,12 @@ const goodsSlice = createSlice({
                     );
                     break;
 
+                case 'default':
+                    state.filteredGoods = state.goods;
+                    break;
+
                 default:
                     return [...state.filteredGoods];
-                    break;
             }
         },
     },

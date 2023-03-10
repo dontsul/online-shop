@@ -1,24 +1,24 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export const CabinetPage = () => {
     const statusLogin = useSelector((state) => state.auth.isLoggedIn);
     const dataUser = useSelector((state) => state.auth);
     const navigate = useNavigate();
 
-    const { userName, userID, email } = dataUser;
+    const { userName, email } = dataUser;
 
     useEffect(() => {
         function checkAuth() {
             if (statusLogin === false) {
-                navigate('/authorization');
+                navigate('/shop/authorization');
                 toast.info('Please, Sign in...');
             }
         }
         checkAuth();
-    }, [statusLogin]);
+    }, [statusLogin, navigate]);
 
     return (
         <div>
