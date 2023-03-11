@@ -2,6 +2,7 @@
   "name": "shop",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dontsul.github.io/shop",
   "dependencies": {
     "@material-tailwind/react": "^1.4.2",
     "@reduxjs/toolkit": "^1.9.3",
