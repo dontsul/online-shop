@@ -1,6 +1,6 @@
 {
-  "short_name": "online-shop",
-  "name": "React online-shop",
+  "short_name": "shop",
+  "name": "React-online-shop",
   "icons": [
     {
       "src": "favicon.ico",
