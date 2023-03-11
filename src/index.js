@@ -16,37 +16,36 @@ import './index.css';
 
 const router = createBrowserRouter([
     {
-        path: '/shop',
+        path: '/online-shop',
         element: <Layout />,
         errorElement: <ErrorPage />,
         children: [
             {
-                path: '/shop',
+                path: '/online-shop',
                 element: <HomePage />,
             },
             {
-                path: '/shop/cabinet',
+                path: '/online-shop/cabinet',
                 element: <CabinetPage />,
             },
             {
-                path: '/shop/authorization',
+                path: '/online-shop/authorization',
                 element: <Authorization />,
             },
             {
-                path: '/shop/registration',
+                path: '/online-shop/registration',
                 element: <Registration />,
             },
             {
-                path: '/shop/cart',
+                path: '/online-shop/cart',
                 element: <CartPage />,
             },
             {
-                path: '/shop/:productId',
+                path: '/online-shop/:productId',
                 element: <ProductPage />,
             },
         ],
     },
-    // { basename: '/shop' },
 ]);
 
 const container = document.getElementById('root');

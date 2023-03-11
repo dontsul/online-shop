@@ -45,7 +45,7 @@ export const Registration = () => {
                 .then((userCredential) => {
                     dispatch(changeStatusLoading(false));
                     toast.success('Registration successful');
-                    navigate('/shop/authorization');
+                    navigate('/online-shop/authorization');
                     dispatch(changeUserEmail(''));
                     dispatch(changeUserPassword(''));
                     dispatch(changeUserCPassword(''));
@@ -205,7 +205,7 @@ export const Registration = () => {
                         >
                             Sign Up
                         </button>
-                        <Link to="/shop/authorization">
+                        <Link to="/online-shop/authorization">
                             <p className="mt-5 mb-0 text-center text-sm hover:text-cyan-900">
                                 Already an account? <span className="font-semibold">Sign in</span>
                             </p>

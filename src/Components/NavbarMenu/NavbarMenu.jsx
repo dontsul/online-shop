@@ -24,7 +24,7 @@ export const NavbarMenu = () => {
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
             <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
                 <NavLink
-                    to="/shop"
+                    to="/online-shop"
                     className=" hover:text-cyan-900 flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
                     style={({ isActive }) =>
                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
@@ -35,7 +35,7 @@ export const NavbarMenu = () => {
             </Typography>
             <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
                 <NavLink
-                    to="/shop/cabinet"
+                    to="/online-shop/cabinet"
                     className=" hover:text-cyan-900 flex flex-row items-center font-inter text-base font-medium traking-normal leading-none text-center mr-4"
                     style={({ isActive }) =>
                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
@@ -52,7 +52,7 @@ export const NavbarMenu = () => {
             >
                 <NavLink
                     className="flex flex-row items-center cursor-pointer "
-                    to="/shop/cart"
+                    to="/online-shop/cart"
                     style={({ isActive }) =>
                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                     }
@@ -90,7 +90,7 @@ export const NavbarMenu = () => {
         const auth = getAuth();
         signOut(auth)
             .then(() => {
-                navigate('/shop');
+                navigate('/online-shop');
                 toast.success('Sign out succssesfully');
                 dispatch(clearCart());
             })
@@ -134,7 +134,7 @@ export const NavbarMenu = () => {
                 <Navbar className="mx-auto w-[85%] py-2 px-4 lg:px-8 lg:py-4 z-40 fixed ">
                     <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                         <Typography className="mr-4 cursor-pointer py-1.5 font-normal">
-                            <NavLink className="relative" to="/shop">
+                            <NavLink className="relative" to="/online-shop">
                                 <span className="absolute top-[-34px] hover:text-cyan-900">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +153,7 @@ export const NavbarMenu = () => {
                             {statusLogin ? (
                                 <NavLink
                                     onClick={logOutUser}
-                                    to="/shop"
+                                    to="/online-shop"
                                     className="hidden lg:inline-block mr-3"
                                 >
                                     <span className="hover:text-cyan-900">Sign out</span>
@@ -163,7 +163,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/shop/authorization"
+                                    to="/online-shop/authorization"
                                     className="hidden lg:inline-block mr-3"
                                 >
                                     <span className="hover:text-cyan-900">Sign in</span>
@@ -174,7 +174,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/shop/registration"
+                                    to="/online-shop/registration"
                                     className="hidden lg:inline-block"
                                 >
                                     <span className="hover:text-cyan-900">Sign up</span>
@@ -226,7 +226,7 @@ export const NavbarMenu = () => {
                             {statusLogin ? (
                                 <NavLink
                                     onClick={logOutUser}
-                                    to="/shop"
+                                    to="/online-shop"
                                     size="sm"
                                     className="mb-2 mr-2"
                                 >
@@ -239,7 +239,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/shop/authorization"
+                                    to="/online-shop/authorization"
                                     variant="gradient"
                                     size="sm"
                                     className="mb-2 mr-2"
@@ -255,7 +255,7 @@ export const NavbarMenu = () => {
                                     style={({ isActive }) =>
                                         isActive ? { color: '#006064', fontWeight: 'bold' } : {}
                                     }
-                                    to="/shop/registration"
+                                    to="/online-shop/registration"
                                     variant="gradient"
                                     size="sm"
                                     className="mb-2 "

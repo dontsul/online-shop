@@ -1,8 +1,8 @@
 {
-  "name": "shop",
+  "name": "online-shop",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dontsul.github.io/shop",
+  "homepage": "https://dontsul.github.io/online-shop/",
   "dependencies": {
     "@material-tailwind/react": "^1.4.2",
     "@reduxjs/toolkit": "^1.9.3",

@@ -36,7 +36,7 @@ export function Authorization() {
                 dispatch(changeUserLoginEmail(''));
                 dispatch(changeUserLoginPassword(''));
                 dispatch(setUid(userId));
-                navigate('/shop');
+                navigate('/online-shop');
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -53,7 +53,7 @@ export function Authorization() {
                 toast.success('Login successful');
                 dispatch(changeStatusLoginLoading(false));
 
-                navigate('/shop');
+                navigate('/online-shop');
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -153,7 +153,7 @@ export function Authorization() {
                         >
                             Sign in with Google
                         </button>
-                        <Link to="/shop/registration">
+                        <Link to="/online-shop/registration">
                             <p className="mt-5 mb-0 text-center text-sm hover:text-cyan-900">
                                 Don&apos;t have an account?{' '}
                                 <span className="font-semibold">Sign up</span>

@@ -13,7 +13,7 @@ export const CabinetPage = () => {
     useEffect(() => {
         function checkAuth() {
             if (statusLogin === false) {
-                navigate('/shop/authorization');
+                navigate('/online-shop/authorization');
                 toast.info('Please, Sign in...');
             }
         }

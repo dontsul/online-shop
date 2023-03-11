@@ -17,7 +17,7 @@ export const Product = (props) => {
             dispatch(addItem(props.product));
             toast.success(`Added to cart ${title.slice(0, 10)}`);
         } else {
-            navigate('/shop/authorization');
+            navigate('/online-shop/authorization');
             toast.info('You need to Log in...');
         }
     };
@@ -25,7 +25,7 @@ export const Product = (props) => {
     return (
         <>
             <Link
-                to={`/shop/${id}`}
+                to={`/online-shop/${id}`}
                 className="flex flex-column shadow-md shadow-cyan-900 rounded-lg cursor-pointer border rounded-md overflow-hidden"
             >
                 <div className="shadow-card flex flex-col rounded-xl bg-white bg-clip-border grow m-4">

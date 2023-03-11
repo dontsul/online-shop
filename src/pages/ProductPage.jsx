@@ -21,7 +21,7 @@ export const ProductPage = () => {
             dispatch(addItem(product));
             toast.success(`Added to cart ${title.slice(0, 10)}`);
         } else {
-            navigate('/shop/authorization');
+            navigate('/online-shop/authorization');
             toast.info('You need to Log in...');
         }
     };
