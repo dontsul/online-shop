@@ -52,7 +52,7 @@ const goodsSlice = createSlice({
                     break;
 
                 case 'default':
-                    state.filteredGoods = state.goods;
+                    state.filteredGoods = state.filteredGoods;
                     break;
 
                 default:
